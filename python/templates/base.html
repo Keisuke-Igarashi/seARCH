@@ -11,21 +11,12 @@
     integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
     crossorigin=""></script>
 <!-- plugin -->
-<link rel="stylesheet" href="{{ url_for('static', failename ='leaflet.contextmenu.min.css') }}" />
-<script src="{{ url_for('js', filename='leaflet.contextmenu.min.js' }}"></script>
-<script type="text/javascript" src="{{ url_for('js', filename='leaflet_tuto.js' }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename ='leaflet.contextmenu.min.css') }}" />
+<script src="{{ url_for('static', filename='/js/leaflet.contextmenu.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='/js/leaflet_tuto.js') }}"></script>
 
 <nav>
     <h1>私の建築訪問記</h1>
-    <!-- <ul>
-        {% if g.user %}
-          <li><span>{{ g.user['username'] }}</span>
-          <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-        {% else %}
-          <li><a href="{{ url_for('auth.register') }}">Register</a>
-          <li><a href="{{ url_for('auth.login') }}">Log In</a>
-        {% endif %}  
-    </ul> -->
 </nav>
 <section class="content">
     <header>

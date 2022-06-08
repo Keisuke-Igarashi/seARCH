@@ -35,8 +35,7 @@ def create_app(test_config=None):
     # from flaskr import auth
     # app.register_blueprint(auth.bp)
 
-    # from . import blog
-    # app.register_blueprint(blog.bp)
-    # app.add_url_rule('/', endpoint='index')
+    from . import search
+    app.register_blueprint(search.bp)
 
     return app
