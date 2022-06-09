@@ -1,3 +1,7 @@
 # Environments
 .venv/
 venv/
+
+# DB
+.Docker/mysql/db
+Docker/mysql/db
