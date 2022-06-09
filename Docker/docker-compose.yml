@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mysql:
+    build: ./mysql
+    volumes:
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d  # init用のsql配置用
+      - ./mysql/db:/var/lib/mysql                     # ホストへのデータ格納用
+    image: mysql
+    container_name: mysqlapp
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass
