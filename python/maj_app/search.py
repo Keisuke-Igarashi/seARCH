@@ -2,6 +2,8 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 
+from python.db import get_db
+
 
 bp = Blueprint('search', __name__)
 
@@ -26,5 +28,9 @@ def search():
             # )
             # db.commit()
             # return redirect(url_for('/hello'))
-    
+
+    from . import db
+    result = get_db()
+
+                
     return render_template('search.html')
