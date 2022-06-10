@@ -20,7 +20,7 @@ CREATE TABLE architecture
     updatedate DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
 
-) CHARACTER SET utf8mb4;
+);
 
 DROP TABLE IF EXISTS architect;
 
@@ -31,7 +31,7 @@ CREATE TABLE architect
     architect_name CHAR(100) NOT NULL,
     createdate DATETIME DEFAULT CURRENT_TIMESTAMP
 
-) CHARACTER SET utf8mb4;
+);
 
 DROP TABLE IF EXISTS favorite;
 
@@ -42,7 +42,7 @@ CREATE TABLE favorite
     architect_id INT NOT NULL,
     createdate DATETIME DEFAULT CURRENT_TIMESTAMP
 
-) CHARACTER SET utf8mb4;
+);
 
 DROP TABLE IF EXISTS user;
 
@@ -53,4 +53,4 @@ CREATE TABLE user
     user_name CHAR(50) NOT NULL,
     password CHAR(50) NOT NULL
 
-) CHARACTER SET utf8mb4;
+);
