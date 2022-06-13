@@ -32,10 +32,16 @@ window.addEventListener("load", function() {
     // マーカクリック時の挙動定義
 
     function onMarkerClick(e) {
+        // alert(arch_data);
         window.open('/test.html', '_blank') //新しいタブを開きページを表示
     }
 
+    function onMarkerClick_2(e) {
+        alert(arch_data)
+    }
+
     marker.on('click', onMarkerClick)
+    // marker.on('')
 
     // 右クリックイベント関数作成
 

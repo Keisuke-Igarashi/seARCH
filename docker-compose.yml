@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mysqldb:
+    build: ./Docker/mysql/ # mysqlディレクトリ配下のDockerfileからビルド
+    image: mysqldb
+    container_name: mysqldb
+    environment:
+      - MYSQL_ROOT_PASSWORD=p@ssw0rd
+    volumes:
+      - ./Docker/mysql/initdb.d:/docker-entrypoint-initdb.d  # 初回実行用のSQL配置
+    ports:
+      - 3306:3306
+  web:
+    build: ./maj/
+    ports:
+      - 8000:5000
+    volumes:
+      - ./maj/:/maj
+    links:
+      - mysqldb
+    # entrypoint:
+    #   - dockerize
+    #   - -timeout
+    #   - 60s
+    #   - -wait
+    #   - tcp://mysqldb:3306 
+    tty: true # コンテナを起動したままにしておく設定

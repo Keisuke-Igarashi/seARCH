@@ -1,13 +1,14 @@
 # Docker image
-FROM mysql
+FROM mysql:debian
 
 # port
 EXPOSE 3306
 
+# copy 初回実行sql
+COPY ./initdb.d/* /docker-entrypoint-initdb.d/
+
 # copy my.cnf
 COPY ./my.cnf /etc/mysql/conf.d/my.cnf
-
-RUN chmod 755 -R /var
 
 # docker run時の実行コマンド
 CMD [ "mysqld" ]

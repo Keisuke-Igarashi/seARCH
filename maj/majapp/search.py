@@ -30,7 +30,6 @@ def search():
             # return redirect(url_for('/hello'))
 
     from . import db
-    result = get_db()
-
+    result = db.get_db()
                 
-    return render_template('search.html')
+    return render_template('search.html', archs = result)

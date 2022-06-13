@@ -1,3 +1,5 @@
+USE majdb;
+
 INSERT INTO architect 
 (architect_name) 
 VALUES

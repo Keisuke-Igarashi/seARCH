@@ -11,8 +11,8 @@ CREATE TABLE architecture
     postalcode INT NOT NULL,
     address1 VARCHAR(100) NOT NULL,
     address2 VARCHAR(100) NOT NULL,
-    address3 VARCHAR(100),
-    address4 VARCHAR(100),
+    address3 VARCHAR(100) ,
+    address4 VARCHAR(100) ,
     latitude FLOAT(20,15) NOT NULL,
     longitude FLOAT(20,15) NOT NULL,
     architect_id INT NOT NULL,
@@ -51,6 +51,6 @@ CREATE TABLE user
 (
     user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_name CHAR(50) NOT NULL,
-    password CHAR(50) NOT NULL
+    password CHAR(50) NOT NULL 
 
 );
