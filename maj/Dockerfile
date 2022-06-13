@@ -4,10 +4,10 @@
 FROM python:3.8-slim-buster
 
 # コンテナの作業ディレクトリ
-WORKDIR /majapp
+WORKDIR /maj
 
 # アプリ資材のコピー
-COPY . /majapp/
+COPY . .
 
 # poetryを使用可能にするためのビルド時実行コマンド
 
@@ -21,5 +21,9 @@ RUN poetry export -f requirements.txt > requirements.txt
 # poetryの設定ファイルの通りのライブラリをインストール
 RUN pip install -r requirements.txt
 
+# 環境変数の設定
+ENV FLASK_APP majapp
+ENV FLASK_ENV development
+
 # コンテナの実行
-CMD [ "python", "-m" , "flask", "run", "--host=0.0.0.0"]
+CMD [ "flask", "run", "--host=0.0.0.0"]
