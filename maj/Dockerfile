@@ -1,11 +1,15 @@
-# 使用するイメージ(バージョンの指定の方法が不明)
-FROM python:3
+# syntax=docker/dockerfile:1
+
+# pythonイメージを取得
+FROM python:3.8-slim-buster
+
+# コンテナの作業ディレクトリ
+WORKDIR /maj
 
 # アプリ資材のコピー
 COPY ./ /majapp/
 
-# コンテナの作業ディレクトリ
-WORKDIR /majapp
+
 
 # MySQLコンテナの起動状況を確認するため
 # dockerizeのバイナリを取得
