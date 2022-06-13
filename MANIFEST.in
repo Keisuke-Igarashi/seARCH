@@ -1,0 +1,3 @@
+graft python/static
+graft python/templates
+global-exclude *.pyc
