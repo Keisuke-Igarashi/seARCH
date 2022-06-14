@@ -11,10 +11,4 @@ def get_db():
 
     )
 
-    with connect.cursor() as cursor:
-        sql = "SELECT * FROM architect"
-        cursor.execute(sql)
-        result= cursor.fetchall()
-
-    connect.close()
-    return result
+    return connect

@@ -14,9 +14,13 @@
             <input type="submit" value="Register">
         </form>
     </div>
-    <script type="text/javascrip">
-        let arch_data = {{ archs | tojson }};
+
+    <script type="text/javascript">
+        const archs = {{ archs | tojson }} 
+        // console.log( {{ archs | tojson }} )
     </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='/js/leaflet_tuto.js') }}"></script>
+    
     <br />
     <div id="map">
         <div id="contextmenu">

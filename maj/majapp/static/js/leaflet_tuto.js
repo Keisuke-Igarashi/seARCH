@@ -1,3 +1,5 @@
+const archs_js = archs 
+
 window.addEventListener("load", function() {
     
     //　マップの作成
@@ -32,12 +34,7 @@ window.addEventListener("load", function() {
     // マーカクリック時の挙動定義
 
     function onMarkerClick(e) {
-        // alert(arch_data);
         window.open('/test.html', '_blank') //新しいタブを開きページを表示
-    }
-
-    function onMarkerClick_2(e) {
-        alert(arch_data)
     }
 
     marker.on('click', onMarkerClick)
@@ -64,5 +61,11 @@ window.addEventListener("load", function() {
     }
 
     map.on('click', onMapClick)
+
+    // 試しコード
+    const hello = function () {
+        console.log(archs_js);
+    }
+    this.document.querySelector('label').addEventListener('click', hello);
 
 });
