@@ -6,7 +6,7 @@ services:
     image: mysqldb
     container_name: mysqldb
     environment:
-      - MYSQL_ROOT_PASSWORD=p@ssw0rd
+      - MYSQL_ROOT_PASSWORD=password
     volumes:
       - ./Docker/mysql/initdb.d:/docker-entrypoint-initdb.d  # 初回実行用のSQL配置
     ports:

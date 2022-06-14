@@ -1,5 +1,5 @@
 # Docker image
-FROM mysql:debian
+FROM mysql
 
 # port
 EXPOSE 3306

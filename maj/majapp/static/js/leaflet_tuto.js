@@ -19,7 +19,14 @@ window.addEventListener("load", function() {
     }
     
     // マーカーの作成
-    var marker = L.marker([35.7, 139.6], markerContextMenu).addTo(map);
+
+    const markers = [];
+
+    archs_js.forEach(function(element) {
+        markers.push(L.marker([element.latitude, element.longitude], markerContextMenu).addTo(map));
+    })
+
+    // var marker = L.marker([35.7, 139.6], markerContextMenu).addTo(map);
     // var marker = L.marker([42.7, 141.8]).addTo(map);
 
     // レンダリング処理
