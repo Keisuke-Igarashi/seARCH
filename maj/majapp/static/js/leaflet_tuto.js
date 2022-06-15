@@ -2,24 +2,25 @@ const archs_js = archs;
 const markers = [];
 var map;
 
+
 window.addEventListener("load", function() {
     
     //　マップの作成
     map = L.map('map').setView([35.7, 139.6], 4);
 
     // マーカの右クリック（Contextmenuの設定)
-    var markerContextMenu = {
-        contextmenu: true,
-        contextmenuItems:[{
-            text: '建築情報を表示',
-            // index: 0,
-            callback: onMarkerClick
-        }, {
-            text: 'この建築物をお気に入りに登録',
-            // index: 1,
-            callback: addToFavarite,
-        }]
-    }
+    // var markerContextMenu = {
+    //     contextmenu: true,
+    //     contextmenuItems:[{
+    //         text: '建築情報を表示',
+    //         // index: 0,
+    //         callback: onMarkerClick
+    //     }, {
+    //         text: 'この建築物をお気に入りに登録',
+    //         // index: 1,
+    //         callback: addToFavarite,
+    //     }]
+    // }
     
     // マーカーの作成
     
@@ -29,20 +30,34 @@ window.addEventListener("load", function() {
 
         archs_js.forEach(function(element,index) {
             
-            markers.push(L.marker([element.latitude, element.longitude],markerContextMenu).addTo(map));
+            //マーカの作成
+            markers.push(L.marker([element.latitude, element.longitude]).addTo(map));
+
+            //マーカーのダブルクリックイベントの登録
+            markers[index].on('dblclick', function addToFavarite(){
+     
+                //建物IDを取得する
+                var architecture_id = element.architecture_id;
+
+                //axiosライブラリを利用してPOSTリクエストする
+                axios.post('/favorite', {
+                    architecture_id: architecture_id
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error){
+                    console.log(error);
+                })
+                 
+            })
             
         })
 
 
     }
 
-     // contextmenuの"この建築物をお気に入りに登録"選択時に動かす処理
-     function addToFavarite(e) {
-        
-        //pythonにPOSTする
-        
-    }
-
+     
     // marker.on('contextmenu', onMarkerRightClick)
     
 
@@ -63,13 +78,7 @@ window.addEventListener("load", function() {
     function onMarkerClick(e) {
         window.open('/test.html', '_blank') //新しいタブを開きページを表示
     }
-
-    marker.on('click', onMarkerClick)
-    // marker.on('')
-
    
-
-
     // イベント対応
 
     var popup = L.popup();
