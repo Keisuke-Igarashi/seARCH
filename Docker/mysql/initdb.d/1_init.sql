@@ -39,7 +39,7 @@ CREATE TABLE favorite
 (
     favorite_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    architect_id INT NOT NULL,
+    architecture_id INT NOT NULL,
     createdate DATETIME DEFAULT CURRENT_TIMESTAMP
 
 );

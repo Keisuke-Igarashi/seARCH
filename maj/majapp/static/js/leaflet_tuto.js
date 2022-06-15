@@ -8,23 +8,8 @@ window.addEventListener("load", function() {
     //　マップの作成
     map = L.map('map').setView([35.7, 139.6], 4);
 
-    // マーカの右クリック（Contextmenuの設定)
-    // var markerContextMenu = {
-    //     contextmenu: true,
-    //     contextmenuItems:[{
-    //         text: '建築情報を表示',
-    //         // index: 0,
-    //         callback: onMarkerClick
-    //     }, {
-    //         text: 'この建築物をお気に入りに登録',
-    //         // index: 1,
-    //         callback: addToFavarite,
-    //     }]
-    // }
-    
-    // マーカーの作成
-    
 
+    // マーカーの作成
     // 検索結果が空白以外の場合のみマーカ作成する
     if (archs_js != ''){
 
@@ -52,6 +37,12 @@ window.addEventListener("load", function() {
                  
             })
             
+            //マーカーのクリックイベントの登録
+            markers[index].on('onclick', function onMarkerClick(){
+
+                window.open('/test.html', '_blank') //新しいタブを開きページを表示
+            
+            })
         })
 
 
@@ -73,29 +64,19 @@ window.addEventListener("load", function() {
     // // マーカーへのポップアップ機能
     // marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 
-    // マーカクリック時の挙動定義
-
-    function onMarkerClick(e) {
-        window.open('/test.html', '_blank') //新しいタブを開きページを表示
-    }
    
     // イベント対応
 
-    var popup = L.popup();
+    // var popup = L.popup();
 
-    function onMapClick(e) {
-        popup
-            .setLatLng(e.latlng)
-            .setContent("you clicked the map at" + e.latlng.toString())
-            .openOn(map)
-    }
+    // function onMapClick(e) {
+    //     popup
+    //         .setLatLng(e.latlng)
+    //         .setContent("you clicked the map at" + e.latlng.toString())
+    //         .openOn(map)
+    // }
 
-    map.on('click', onMapClick)
+    // map.on('click', onMapClick)
 
-    // 試しコード
-    const hello = function () {
-        console.log(archs_js);
-    }
-    this.document.querySelector('label').addEventListener('click', hello);
 
 });

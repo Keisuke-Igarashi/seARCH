@@ -30,29 +30,27 @@ def favorite():
 
         else:
           
-            result2 = architecture_id
-            # connect = get_db()
-            # with connect.cursor() as cursor:
+            # result2 = architecture_id
+            connect = get_db()
+
+            with connect.cursor() as cursor:
           
+                # お気に入りデータを登録する
+                sql_1 = "INSERT INTO favorite (user_id, architecture_id) VALUES (%s, %s);"
+                cursor.execute(sql_1,('1', architecture_id,))
+                
+            connect.commit()
 
-            #     # 建築家名から建築家IDを取得する
-            #     search_word = "%" + archiname + "%"
-            #     sql = "SELECT * FROM architect WHERE architect_name LIKE %s;"
-            #     cursor.execute(sql,(search_word,))
-            #     result = cursor.fetchall()
-            #     result_dict = result[0]
-            #     archiname_id = result_dict['architect_id']
+            with connect.cursor() as cursor:
 
-            #     # 建築家IDから建築物を取得する
-            #     search_word = archiname_id
-            #     sql = "SELECT * FROM architecture WHERE architect_id = %s;"
-            #     cursor.execute(sql,(search_word,))
-            #     result2 = cursor.fetchall()
+                # 登録確認用
+                sql_2 = "SELECT * FROM favorite;"
+                cursor.execute(sql_2)
+                result = cursor.fetchall()
 
+                for i in result:
+                    print(i)
             
-            # print(type(result))
-            # print(result_dict)
+            connect.close()
 
-            # connect.close()
-
-    return render_template('favorite.html', archs = result2)
+    return render_template('favorite.html', favorites = result)

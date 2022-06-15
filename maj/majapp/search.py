@@ -36,6 +36,7 @@ def search():
                 sql = "SELECT * FROM architect WHERE architect_name LIKE %s;"
                 cursor.execute(sql,(search_word,))
                 result = cursor.fetchall()
+
                 result_dict = result[0]
                 archiname_id = result_dict['architect_id']
 
@@ -45,9 +46,9 @@ def search():
                 cursor.execute(sql,(search_word,))
                 result2 = cursor.fetchall()
 
-            
-            print(type(result))
-            print(result_dict)
+        
+                print(type(result))
+                print(result_dict)
 
             connect.close()
 
