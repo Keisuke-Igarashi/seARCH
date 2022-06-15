@@ -41,4 +41,7 @@ def create_app(test_config=None):
     from . import favorite
     app.register_blueprint(favorite.bp)
 
+    from . import detail
+    app.register_blueprint(detail.bp)
+
     return app

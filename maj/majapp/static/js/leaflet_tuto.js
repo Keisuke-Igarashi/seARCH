@@ -1,6 +1,10 @@
-const archs_js = archs; 
+let w1 = window
+
+
+const archs_js = archs;     
 const markers = [];
 var map;
+var response_json;
 
 
 window.addEventListener("load", function() {
@@ -8,6 +12,12 @@ window.addEventListener("load", function() {
     //　マップの作成
     map = L.map('map').setView([35.7, 139.6], 4);
 
+    
+    // レンダリング処理
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
 
     // マーカーの作成
     // 検索結果が空白以外の場合のみマーカ作成する
@@ -17,6 +27,31 @@ window.addEventListener("load", function() {
             
             //マーカの作成
             markers.push(L.marker([element.latitude, element.longitude]).addTo(map));
+
+            //マーカーのツールチップ表示
+            let tooltip = archs_js[index].architecture_name.toString();
+            markers[index].bindTooltip(tooltip).openTooltip();
+
+            //マーカーのクリックイベントの登録
+            markers[index].on('click', function onMarkerClick(){
+                
+                //建物IDを取得する
+                var architecture_id = element.architecture_id;
+
+                //axiosライブラリを利用してPOSTリクエストする
+                axios.post('/detail', {
+                    architecture_id: architecture_id
+                })
+                .then(function (response) {
+                    console.log(response.data); 
+                    // window.open('/detail');
+                    window.location.href = '/detail';
+                })
+                .catch(function (error){
+                    console.log(error);
+                })          
+            
+            })
 
             //マーカーのダブルクリックイベントの登録
             markers[index].on('dblclick', function addToFavarite(){
@@ -30,6 +65,7 @@ window.addEventListener("load", function() {
                 })
                 .then(function (response) {
                     console.log(response);
+                    alert('お気に入り登録が完了しました');
                 })
                 .catch(function (error){
                     console.log(error);
@@ -37,29 +73,11 @@ window.addEventListener("load", function() {
                  
             })
             
-            //マーカーのクリックイベントの登録
-            markers[index].on('onclick', function onMarkerClick(){
-
-                window.open('/test.html', '_blank') //新しいタブを開きページを表示
-            
-            })
+           
         })
 
 
     }
-
-     
-    // marker.on('contextmenu', onMarkerRightClick)
-    
-
-    // var marker = L.marker([35.7, 139.6], markerContextMenu).addTo(map);
-    // var marker = L.marker([42.7, 141.8]).addTo(map);
-
-    // レンダリング処理
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
 
     // // マーカーへのポップアップ機能
     // marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
