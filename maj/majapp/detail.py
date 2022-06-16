@@ -10,7 +10,7 @@ from majapp.db import get_db
 bp = Blueprint('detail', __name__)
 
 @bp.route('/detail', methods=('GET', 'POST'))
-def favorite():
+def detail():
 
     result = ""
     result2 = ""

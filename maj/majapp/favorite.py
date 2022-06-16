@@ -53,4 +53,36 @@ def favorite():
             
             connect.close()
 
+        # GETの場合(一覧表示用)
+    else:
+
+        # result2 = architecture_id
+        connect = get_db()
+
+        with connect.cursor() as cursor:
+
+            # 登録確認用
+            sql_2 = "SELECT \
+                        fav.architecture_id, \
+                        arch.architect_id, \
+                        arch.architecture_name, \
+                        arch.postalcode, \
+                        arch.address1, \
+                        arch.address2, \
+                        arch.address3, \
+                        arch.address4 \
+                    FROM favorite as fav \
+                    JOIN architecture as arch \
+                    ON fav.architecture_id = arch.architecture_id \
+                    ORDER BY fav.createdate DESC\
+                    ;"
+            cursor.execute(sql_2)
+            result = cursor.fetchall()
+
+            for i in result:
+                print(i)
+        
+        connect.close()
+
+
     return render_template('favorite.html', favorites = result)

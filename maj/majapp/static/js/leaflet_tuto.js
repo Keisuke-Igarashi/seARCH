@@ -33,25 +33,25 @@ window.addEventListener("load", function() {
             markers[index].bindTooltip(tooltip).openTooltip();
 
             //マーカーのクリックイベントの登録
-            markers[index].on('click', function onMarkerClick(){
+            // markers[index].on('click', function onMarkerClick(){
                 
-                //建物IDを取得する
-                var architecture_id = element.architecture_id;
+            //     //建物IDを取得する
+            //     var architecture_id = element.architecture_id;
 
-                //axiosライブラリを利用してPOSTリクエストする
-                axios.post('/detail', {
-                    architecture_id: architecture_id
-                })
-                .then(function (response) {
-                    console.log(response.data); 
-                    // window.open('/detail');
-                    window.location.href = '/detail';
-                })
-                .catch(function (error){
-                    console.log(error);
-                })          
+            //     //axiosライブラリを利用してPOSTリクエストする
+            //     axios.post('/detail', {
+            //         architecture_id: architecture_id
+            //     })
+            //     .then(function (response) {
+            //         console.log(response.data); 
+            //         // window.open('/detail');
+            //         window.location.href = '/detail';
+            //     })
+            //     .catch(function (error){
+            //         console.log(error);
+            //     })          
             
-            })
+            // })
 
             //マーカーのダブルクリックイベントの登録
             markers[index].on('dblclick', function addToFavarite(){
