@@ -1,0 +1,49 @@
+- hosts: maj_server
+  remote_user: root
+  vars:
+    - inventory_hostname: 192.168.11.100
+    - ansible_ssh_port: 22
+  tasks:
+    - name: Remove installed docker
+      yum:
+        name:
+          - docker
+          - docker-client
+          - docker-client-latest
+          - docker-common
+          - docker-latest 
+          - docker-latest-logrotate 
+          - docker-logrotate 
+          - docker-engine
+        state: absent
+    - name: Install yum-utils for set up the repository
+      yum:
+        name:
+          - yum-utils
+        state: present
+    - name: Set up yum config
+      command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    - name: Install Docker Engine
+      yum:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+        state: present
+    - name: Start Docker.
+      systemd:
+        name: docker.service
+        state: restarted
+        enabled: yes
+    - name: verify than docker engine is installed
+      command: docker run hello-world
+    - name: docker-compose install
+      shell: curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose 
+    - name: add execute permission to binary
+      command: chmod +x /usr/local/bin/docker-compose
+    - name: Install git
+      yum:
+        name: 
+          - git-all
+        state: present
