@@ -2,40 +2,40 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h2>{% block title %}お気に入り一覧{% endblock %}</h2>
+    <div class="container-fluid">
+        <h2>{% block title %}お気に入り一覧{% endblock %}</h2>
+    </div>
+    
 {% endblock %}
 
 
 {% block content %}
-    <div class="container">
+    <div class="container-fluid input-group">
         <div class="row">
-            <div class="col">
-                <form method="post">
+            <div class="col-md mb-3">
+                <form method="post" class="form-floating">
                     <label for="architect_name">建築家名</label>
-                    <input name="architect_name" id="architect_name" >
-                    <input type="hidden" name="search_flg" value="True">
-                    <input type="submit" value="Register">
-                </form>
+                    <input name="architect_name" class = "form-control" id="architect_name" placeholder="">
             </div>
-            <div class="col">
+            <div class="col-md form-floating mb-3">
                 <form method="post">
                     <label for="architecture_name">建築物名</label>
-                    <input name="architecture_name" id="architecture_name" >
-                    <input type="hidden" name="search_flg" value="True">
-                    <input type="submit" value="Register">
-                </form>
+                    <input name="architecture_name" class = "form-control" id="architecture_name" >
             </div>
-            <div class="col">
+            <div class="col-md form-floating mb-3">
                 <form method="post">
                     <label for="address1">都道府県</label>
-                    <input name="address1" id="address1" >
+                    <input name="address1" class = "form-control" id="address1" >
                     <input type="hidden" name="search_flg" value="True">
-                    <input type="submit" value="Register">
+            </div>
+            <div class="col-md form-floating mb-3 text-center pt-4">
+                <input type="submit" value="検索">
                 </form>
             </div>
         </div>
+       
     </div>
-    <div>
+    <div class="container-fluid">
         <table class="table table-bordered table-striped table-hover table-responsive text-nowrap">
             <thead class="thead-dark text-center">
                 <tr>
