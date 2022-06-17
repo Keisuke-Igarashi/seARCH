@@ -5,3 +5,10 @@ venv/
 # DB
 .Docker/mysql/db
 Docker/mysql/db
+
+# pychace
+.maj/majapp/__pychace__/
+maj/majapp/__pychace__/
+
+# ..
+../

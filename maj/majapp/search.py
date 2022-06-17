@@ -42,7 +42,25 @@ def search():
 
                 # 建築家IDから建築物を取得する
                 search_word = archiname_id
-                sql = "SELECT * FROM architecture WHERE architect_id = %s;"
+                sql = "SELECT \
+                    a.architecture_id, \
+                    a.architecture_name, \
+                    b.architect_name, \
+                    a.postalcode, \
+                    a.address1, \
+                    a.address2, \
+                    a.address3, \
+                    a.address4, \
+                    a.latitude, \
+                    a.longitude, \
+                    a.architect_id, \
+                    a.createdate, \
+                    a.updatedate \
+                    FROM architecture as a \
+                    JOIN architect as b \
+                    ON a.architect_id = b.architect_id \
+                    WHERE a.architect_id = %s;"
+
                 cursor.execute(sql,(search_word,))
                 result2 = cursor.fetchall()
 

@@ -2,18 +2,19 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1>{% block title %}Search{% endblock %}</h1>
+    <!-- <h1>{% block title %}Search{% endblock %}</h1> -->
 {% endblock %}
 
 
 {% block content %}
-    <div class="architect">
+    <div class="mb-3">
         <form method="post">
             <label for="architect_name">建築家名</label>
             <input name="architect_name" id="architect_name" >
             <input type="submit" value="Register">
         </form>
     </div>
+    
 
     <script type="text/javascript">
         const archs = {{ archs | tojson }} 

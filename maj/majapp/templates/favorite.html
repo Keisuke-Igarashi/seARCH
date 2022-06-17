@@ -3,30 +3,60 @@
 
 {% block header %}
     <h2>{% block title %}お気に入り一覧{% endblock %}</h2>
-    {% endblock %}
+{% endblock %}
 
 
 {% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form method="post">
+                    <label for="architect_name">建築家名</label>
+                    <input name="architect_name" id="architect_name" >
+                    <input type="hidden" name="search_flg" value="True">
+                    <input type="submit" value="Register">
+                </form>
+            </div>
+            <div class="col">
+                <form method="post">
+                    <label for="architecture_name">建築物名</label>
+                    <input name="architecture_name" id="architecture_name" >
+                    <input type="hidden" name="search_flg" value="True">
+                    <input type="submit" value="Register">
+                </form>
+            </div>
+            <div class="col">
+                <form method="post">
+                    <label for="address1">都道府県</label>
+                    <input name="address1" id="address1" >
+                    <input type="hidden" name="search_flg" value="True">
+                    <input type="submit" value="Register">
+                </form>
+            </div>
+        </div>
+    </div>
     <div>
-        <table class="table table-bordered table-striped table-hover">
-            <thead>
+        <table class="table table-bordered table-striped table-hover table-responsive text-nowrap">
+            <thead class="thead-dark text-center">
                 <tr>
-                    <th>建築ID</th>
-                    <th>建築家名</th>
-                    <th>建築物名</th>
-                    <th>郵便番号</th>
-                    <th>住所１</th>
-                    <th>住所２</th>
-                    <th>住所３</th>
-                    <th>住所４</th>
-                    <th>お気に入り削除</th>
+                    <th scope="col">#</th>
+                    <th scope="col">建築ID</th>
+                    <th scope="col">建築家名</th>
+                    <th scope="col">建築物名</th>
+                    <th scope="col">郵便番号</th>
+                    <th scope="col">住所１</th>
+                    <th scope="col">住所２</th>
+                    <th scope="col">住所３</th>
+                    <th scope="col">住所４</th>
+                    <th scope="col">お気に入り解除</th>
                 </tr>
             </thead>
             {% for fav in favorites %}
                 <tbody>
                     <tr>
+                        <th scope = "row">{{ loop.index }}</th>
                         <td>{{ fav['architecture_id'] }}</td>
-                        <td>{{ fav['architect_id'] }}</td>
+                        <td>{{ fav['architect_name'] }}</td>
                         <td>{{ fav['architecture_name'] }}</td>
                         <td>{{ fav['postalcode'] }}</td>
                         <td>{{ fav['address1'] }}</td>
@@ -34,7 +64,12 @@
                         <td>{{ fav['address3'] }}</td>
                         <td>{{ fav['address4'] }}</td>
                         <td>
-                            <!-- <a href=" url_for('.favorite')"></a> -->
+                            <form action="/favorite_del" method="post">
+                                <input class="danger" type="submit" value="解除" onclick="return confirm('Are you sure?');">
+                                <input type="hidden" name="architecture_id" value="{{ fav['architect_id'] }}">
+                                <input type="hidden" name="del_flg" value="True">
+
+                            </form>
                         </td>
                     </tr>
                 </tbody>
