@@ -9,6 +9,3 @@ Docker/mysql/db
 # pychace
 .maj/majapp/__pychace__/
 maj/majapp/__pychace__/
-
-# ..
-../
