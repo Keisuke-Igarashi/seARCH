@@ -1,23 +1,20 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, render_template, request
 )
-from werkzeug.exceptions import abort
 
-import ast
-import json
 
 from majapp.db import get_db
 
 bp = Blueprint('favorite_del', __name__)
 
+
 @bp.route('/favorite_del', methods=('GET', 'POST'))
 def favorite():
 
     result = ""
-    result2 = ""
-    
+
     if request.method == 'POST':
-        
+
         architecture_id = request.form['architecture_id']
 
         error = None
@@ -29,18 +26,18 @@ def favorite():
             flash(error)
 
         else:
-          
+
             # result2 = architecture_id
             connect = get_db()
 
             with connect.cursor() as cursor:
-          
+
                 # お気に入りデータを更新する
                 sql_1 = " DELETE FROM favorite WHERE architecture_id = %s;"
-                cursor.execute(sql_1,(architecture_id,))
-                
+                cursor.execute(sql_1, (architecture_id,))
+
             connect.commit()
-            
+
             with connect.cursor() as cursor:
 
                 # 登録確認用
@@ -67,11 +64,11 @@ def favorite():
                 # for i in result:
                 #     print(i)
 
-            connect.close() 
-    
+            connect.close()
+
     else:
         connect = get_db()
-        
+
         with connect.cursor() as cursor:
 
             # 登録確認用
@@ -95,5 +92,4 @@ def favorite():
             cursor.execute(sql_2)
             result = cursor.fetchall()
 
-
-    return render_template('favorite.html',  favorites = result)
+    return render_template('favorite.html',  favorites=result)

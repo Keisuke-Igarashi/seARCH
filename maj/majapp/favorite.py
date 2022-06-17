@@ -1,27 +1,30 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, render_template, request
 )
 
-import ast
+
 import json
+
 
 from majapp.db import get_db
 
+
 bp = Blueprint('favorite', __name__)
+
 
 @bp.route('/favorite', methods=('GET', 'POST'))
 def favorite():
 
     result = ""
-    result2 = ""
+
     architecture_id = ""
     architect_name = ""
     architecture_name = ""
     address1 = ""
     search_flg = ""
-    
+
     if request.method == 'POST':
-        
+
         # print('!!!!!!!!!!!!!!!!!!!はいった!!!!!!!!!!!!!!!!')
 
         # jsから受け取った変数
@@ -29,7 +32,7 @@ def favorite():
         if(request.data):
             param = json.loads(request.data.decode('utf-8'))
             print(param)
-        
+
             architecture_id = param['architecture_id']
 
         # 検索窓から受け取った変数
@@ -37,27 +40,30 @@ def favorite():
             print('!!!!!!!!!!!!!!!!!!!はいった!!!!!!!!!!!!!!!!')
             architect_name = request.form['architect_name']
             print('!!!!!!!!!!!!!'+architect_name+'!!!!!!!!!!!!!')
-        except:
+        except Exception as e:
+            print(e)
             pass
 
         try:
             architecture_name = request.form['architecture_name']
-        except:
+        except Exception as e:
+            print(e)
             pass
 
         try:
             address1 = request.form['address1']
-        except:
+        except Exception as e:
+            print(e)
             pass
-        
+
         try:
             search_flg = request.form['search_flg']
             print('!!!!!!!!!!!!!!!!!!!はいった!!!!!!!!!!!!!!!!')
             print('!!!!!!!!!!!!!'+search_flg+'!!!!!!!!!!!!!')
-        except:
+        except Exception as e:
+            print(e)
             pass
-        
-        
+
         error = None
 
         # if not architecture_id:
@@ -67,7 +73,7 @@ def favorite():
             flash(error)
 
         else:
-          
+
             # result2 = architecture_id
             connect = get_db()
 
@@ -77,11 +83,12 @@ def favorite():
                 print('!!!!!!!!!!!!!!!!!!!はいった!!!!!!!!!!!!!!!!')
 
                 with connect.cursor() as cursor:
-            
+
                     # お気に入りデータを登録する
-                    sql_1 = "INSERT INTO favorite (user_id, architecture_id) VALUES (%s, %s);"
-                    cursor.execute(sql_1,('1', architecture_id,))
-                    
+                    sql_1 = "INSERT INTO favorite \
+                    (user_id, architecture_id) VALUES (%s, %s);"
+                    cursor.execute(sql_1, ('1', architecture_id,))
+
                 connect.commit()
 
             # 建築家名の検索条件を受け取ってsql実行する処理
@@ -111,7 +118,7 @@ def favorite():
                     WHERE c.architect_name like %s \
                     ORDER BY fav.createdate DESC\
                     ;"
-                    cursor.execute(sql_2,(search_word,))
+                    cursor.execute(sql_2, (search_word,))
                     result = cursor.fetchall()
 
             # 建物名の検索条件を受け取ってsql実行する処理
@@ -139,7 +146,7 @@ def favorite():
                     WHERE arch.architecture_name like %s \
                     ORDER BY fav.createdate DESC\
                     ;"
-                    cursor.execute(sql_2,(search_word,))
+                    cursor.execute(sql_2, (search_word,))
                     result = cursor.fetchall()
 
             # 都道府県名の検索条件を受け取ってsql実行する処理
@@ -167,9 +174,9 @@ def favorite():
                     WHERE arch.address1 like %s \
                     ORDER BY fav.createdate DESC\
                     ;"
-                    cursor.execute(sql_2,(search_word,))
-                    result = cursor.fetchall()           
-            
+                    cursor.execute(sql_2, (search_word,))
+                    result = cursor.fetchall()
+
             connect.close()
 
         # GETの場合(一覧表示用)
@@ -203,8 +210,7 @@ def favorite():
 
             # for i in result:
             #     print(i)
-        
+
         connect.close()
 
-
-    return render_template('favorite.html', favorites = result)
+    return render_template('favorite.html', favorites=result)

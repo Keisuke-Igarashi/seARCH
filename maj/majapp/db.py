@@ -1,6 +1,7 @@
 import pymysql.cursors
 # import mysql.connector
 
+
 def get_db():
     connect = pymysql.connect(
                             host="mysqldb",
