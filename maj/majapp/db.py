@@ -4,9 +4,9 @@ import pymysql.cursors
 
 def get_db():
     connect = pymysql.connect(
-                            # host="mysqldb",
-                            host='localhost',
-                            port=3306,
+                            host="mysqldb",
+                            # host='localhost',
+                            # port=3306,
                             user='root',
                             password='password',
                             db='majdb',

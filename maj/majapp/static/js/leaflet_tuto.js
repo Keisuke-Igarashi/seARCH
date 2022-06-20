@@ -11,7 +11,7 @@ var response_json;
 window.addEventListener("load", function() {
     
     //　マップの作成
-    map = L.map('map').setView([35.7, 139.6], 3);
+    map = L.map('map').setView([36.44354783901506, 32.732676100859955], 2);
 
     
     // レンダリング処理
