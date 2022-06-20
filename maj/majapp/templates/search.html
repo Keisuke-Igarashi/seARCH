@@ -2,25 +2,38 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <!-- <h1>{% block title %}Search{% endblock %}</h1> -->
+    <div class="container-fluid" style="height: 40px;">
+        <div class="align-item-center"> 
+            <h5>
+                {% block title %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+                建築検索
+                {% endblock %}
+            </h5>
+        </div>
+    </div>
 {% endblock %}
 
 
 {% block content %}
     <div class="container-fluid input-group">
-        <div class="row">
-            <div class="col-md mb-3 pt-1">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-8">
                 <form method="post">
                     <label for="architect_name">建築家名</label>
                     <input name="architect_name" id="architect_name" >
             </div>
-            <div class="col-md mb-3 pt-4">
-                    <input type="submit" value="Register">
+            <div class="col-3 align-self-center">
+                    <input type="submit" value="検索">
                 </form>
             </div>
         </div>
     </div>
-    
+    <div>
+        <h3></h3>
+    </div>
 
     <script type="text/javascript">
         const archs = {{ archs | tojson }} 
@@ -28,8 +41,7 @@
     </script>
     <script type="text/javascript" src="{{ url_for('static', filename='/js/leaflet_tuto.js') }}"></script>
     
-    <br />
-    <div id="map">
+    <div id="map" style="height:800px;">
         <div id="contextmenu">
             <ul>
                 <li>menu1</li>
