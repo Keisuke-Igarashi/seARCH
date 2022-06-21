@@ -8,7 +8,7 @@ CREATE TABLE architecture
 (
     architecture_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     architecture_name VARCHAR(100) NOT NULL,
-    postalcode INT NOT NULL,
+    postalcode CHAR(10) NOT NULL,
     address1 VARCHAR(100) NOT NULL,
     address2 VARCHAR(100) NOT NULL,
     address3 VARCHAR(100) ,

@@ -5,4 +5,6 @@ INSERT INTO architect
 VALUES
     ("Tadao Ando"),
     ("Kengo Kuma"),
-    ("Kazuyo Segima");
+    ("Kazuyo Sejima"),
+    ("Tange Kenzo"),
+    ("Toyoo Ito");

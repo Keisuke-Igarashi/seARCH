@@ -208,6 +208,8 @@ def favorite():
             cursor.execute(sql_2)
             result = cursor.fetchall()
 
+            print(result)
+
             # for i in result:
             #     print(i)
 

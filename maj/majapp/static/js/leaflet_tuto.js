@@ -45,7 +45,7 @@ window.addEventListener("load", function() {
                 color:ReadableStream,
                 fillColor: '#f03',
                 fillOpacity: 0.5,
-                radius: 100000
+                radius: 10000
             }).addTo(map));
 
             //マーカーのツールチップ表示
