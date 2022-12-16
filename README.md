@@ -47,7 +47,7 @@ Ansibleによって構築した仮想環境上でDockerコンテナを起動す�
         sudo docker rm mysqldb
         sudo docker rmi myarchitecturaljourney_igarashikeisuke_web
         sudo docker rmi mysqldb
-        sudo docker-compose -f docker-compose.yml up --build
+        sudo docker compose -f docker-compose.yml up --build
         ```
 
     3. webサーバーにアクセス（ホストOSでの操作）
