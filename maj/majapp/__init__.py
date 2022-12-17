@@ -33,6 +33,9 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
+    from . import login
+    app.register_blueprint(login.bp)
+
     from . import search
     app.register_blueprint(search.bp)
 
