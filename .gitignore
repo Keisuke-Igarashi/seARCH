@@ -9,4 +9,4 @@ maj/.env
 Docker/mysql/db
 
 # pychace
-maj/majapp/__pycache__/
+maj/majapp/__pycache__/*
