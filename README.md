@@ -41,13 +41,13 @@ Ansibleによって構築した仮想環境上でDockerコンテナを起動す�
     2. Docker-composeの実行
 
         ```
-        sudo docker stop myarchitecturaljourney_igarashikeisuke_web_1
+        sudo docker stop search-web-1
         sudo docker stop mysqldb
-        sudo docker rm myarchitecturaljourney_igarashikeisuke_web_1
+        sudo docker rm search-web-1
         sudo docker rm mysqldb
-        sudo docker rmi myarchitecturaljourney_igarashikeisuke_web
+        sudo docker rmi search-web
         sudo docker rmi mysqldb
-        sudo docker-compose -f docker-compose.yml up --build
+        sudo docker compose -f docker-compose.yml up --build
         ```
 
     3. webサーバーにアクセス（ホストOSでの操作）
