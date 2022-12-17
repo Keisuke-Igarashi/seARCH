@@ -30,8 +30,8 @@ RUN pip install -r requirements.txt
 
 # 環境変数の設定
 ENV FLASK_APP majapp
-ENV FLASK_ENV produciton
-# ENV FLASK_ENV development
+# ENV FLASK_ENV produciton
+ENV FLASK_ENV development
 
 # コンテナの実行
 CMD ["flask", "run", "--host=0.0.0.0"]

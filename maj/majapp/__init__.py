@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect
 
 
 def create_app(test_config=None):
@@ -24,6 +24,11 @@ def create_app(test_config=None):
     #     pass
 
     # a simple page that says hello
+
+    @app.route('/')
+    def top():
+        return redirect('http://localhost:8000/search')
+
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
