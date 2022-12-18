@@ -1,12 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>This is login page</h1>
+{% block header %}
+    <title>Sign-in seARCH</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename ='signin.css') }}" />
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <form class="form-signin" action="" method="post">
+        <img class="mb-4" src="../static/img/building.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">seARCHへようこそ.サインインしてください</h1>        
+        <label for="user_id" class="sr-only">ユーザID</label>
+        <input type="text" name="user_id" class="form-control" placeholder="User id" required autofocus>
+        <label for="password" class="sr-only">パスワード</label>
+        <input type="password" name="password" class="form-control" placeholder="Password" required autofocus>
+        <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-secondary btn-block" type="submit">ログイン</button>
+    </form>
 </body>
-</html>
+{% endblock %}
