@@ -51,4 +51,7 @@ def create_app(test_config=None):
     from . import register
     app.register_blueprint(register.bp)
 
+    from . import user_register
+    app.register_blueprint(user_register.bp)
+
     return app
